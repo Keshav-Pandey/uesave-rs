@@ -2155,7 +2155,17 @@ impl Property {
                     ".CommunitySave.CommunityMetCharacterIds" => PropertyType::IntProperty,
                     ".RadioSave.SeenCommands" => PropertyType::StrProperty,
                     ".StorySave.ArcManagerSave.CompletedArcs" => PropertyType::StrProperty,
-                    _ => todo!("set type"),
+                    ".HelpTipsSave.ShownPlagueWarThreePanelTypes" => PropertyType::StrProperty,
+                    ".HelpTipsSave.HiddenUntilSeenThreePanelTypes" => PropertyType::StrProperty,
+                    ".Outfits.UnlockedOutfitItemIDs" => PropertyType::StrProperty,
+                    ".Outfits.RecentlyUnlockedOutfitItemIDs" => PropertyType::StrProperty,
+                    ".Outfits.SeenOutfitItemIDs" => PropertyType::StrProperty,
+                    ".AchievementData.ClaimedLandmarkMapIDs" => PropertyType::StrProperty,
+                    ".CommunitySave.HistoricalBaseDifficultyPairs" => PropertyType::StrProperty,
+                    _ => {
+                        println!("Unhandled set type: {}", path); // Print the path
+                        todo!("set type");
+                    }
                 };
 
                 let id = read_optional_uuid(reader)?;
@@ -2180,7 +2190,16 @@ impl Property {
                     ".CommunitySave.BaseSave.FacilitySlotSaves.FacilitySlotSaves.InProgressAction.ActionEscrow.Items" => (PropertyType::StructProperty, PropertyType::StructProperty),
                     ".CommunitySave.BaseSave.EscrowSaves.BuildEscrowSaves" => (PropertyType::StrProperty, PropertyType::StructProperty),
                     ".CommunitySave.BaseSave.EscrowSaves.BuildEscrowSaves.Items" => (PropertyType::StrProperty, PropertyType::IntProperty),
-                    _ => todo!("map type"),
+                    ".TotalPlaytime" => (PropertyType::StrProperty, PropertyType::DoubleProperty),
+                    ".TravelSequenceDirector.ActorSceneVariantsHeard" => (PropertyType::StrProperty, PropertyType::StructProperty), 
+                    ".Outfits.UnlockedOutfitItemIDs" => (PropertyType::StrProperty, PropertyType::StructProperty), 
+                    ".SurveyData.SurveyData" => (PropertyType::StrProperty, PropertyType::StructProperty),
+                    ".MapSaveCollection.MapSaves.boonsbanes.CollectionCastingSaves" => (PropertyType::StrProperty, PropertyType::StructProperty),
+                    ".MapSaveCollection.MapSaves.boonsbanes.BuffOccurrences" => (PropertyType::StrProperty, PropertyType::StructProperty),
+                    _ => {
+                        println!("Unhandled map type: {}", path); // Print the path
+                        todo!("map type");
+                    }
                 };
 
                 let id = read_optional_uuid(reader)?;
